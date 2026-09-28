@@ -7,14 +7,21 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-// Contact details shown on the page. Replace the placeholders before launch.
 export const site = {
   name: "Tech Bite BD",
   tagline: "IT & Digital Creative Agency",
-  email: "hello@example.com", // TODO: real inbox
-  phone: "", // TODO: e.g. "+880 1XXX-XXXXXX" — hidden while empty
-  location: "Bangladesh", // TODO: city / full address
+  email: "quyum52526@gmail.com",
+  phone: "+880 1962-434901",
+  phoneHref: "tel:+8801962434901",
+  whatsappHref: "https://wa.me/8801962434901",
+  address: "East Nasirabad, Baizid, Chittagong, Bangladesh",
 };
+
+export const socialLinks = [
+  { platform: "facebook", label: "Facebook", href: "https://www.facebook.com/techbitesbd" },
+  { platform: "instagram", label: "Instagram", href: "https://www.instagram.com/techbitbd" },
+  { platform: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/techbitesofficial" },
+] as const;
 
 export const navLinks = [
   { href: "#services", label: "Services" },

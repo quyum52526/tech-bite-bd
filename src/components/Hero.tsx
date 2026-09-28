@@ -4,7 +4,7 @@ const highlights = ["Web & App Development", "Custom Software", "SEO & Marketing
 
 export function Hero() {
   return (
-    <section id="top" className="relative isolate overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+    <section id="top" className="relative isolate overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28">
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-grid [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" />
       <div aria-hidden="true" className="absolute -top-40 left-1/2 -z-10 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-brand-orange/20 blur-3xl" />
       <div aria-hidden="true" className="absolute top-40 -right-40 -z-10 h-[28rem] w-[28rem] rounded-full bg-brand-navy-700/50 blur-3xl" />

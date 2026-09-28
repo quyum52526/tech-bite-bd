@@ -1,12 +1,16 @@
 import { Clock, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
 import { site } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
+import { SocialIcon } from "./SocialIcon";
+import { SocialLinks } from "./SocialLinks";
 
 const steps = [
   "Share your goals using the form",
   "Get a free 30-minute strategy call",
   "Receive a clear proposal & timeline",
 ];
+
+const linkClass = "rounded hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange";
 
 export function Contact() {
   return (
@@ -17,7 +21,7 @@ export function Contact() {
     >
       <div aria-hidden="true" className="absolute -bottom-40 -left-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-brand-orange/15 blur-3xl" />
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
-        <div>
+        <div className="min-w-0">
           <p className="text-sm font-semibold uppercase tracking-widest text-brand-orange">Let&apos;s work together</p>
           <h2 id="contact-heading" className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-5xl">
             Book your <span className="text-gradient">free consultation</span>
@@ -38,34 +42,50 @@ export function Contact() {
             ))}
           </ol>
 
+          <a
+            href={site.whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-10 inline-flex items-center gap-3 rounded-full bg-[#25D366] px-6 py-3 font-semibold text-brand-navy-950 shadow-lg shadow-[#25D366]/20 transition hover:bg-[#1ebe5a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#25D366]"
+          >
+            <SocialIcon platform="whatsapp" className="size-5" />
+            Chat on WhatsApp
+          </a>
+
           <ul className="mt-10 space-y-4 text-slate-300">
-            <li className="flex items-center gap-3">
-              <Mail aria-hidden="true" className="size-5 text-brand-orange" />
-              <a href={`mailto:${site.email}`} className="hover:text-white">
+            <li className="flex items-start gap-3">
+              <Phone aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-brand-orange" />
+              <span>
+                <a href={site.phoneHref} className={linkClass}>
+                  {site.phone}
+                </a>
+                <span className="text-slate-500"> · </span>
+                <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  WhatsApp
+                </a>
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Mail aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-brand-orange" />
+              <a href={`mailto:${site.email}`} className={`break-all ${linkClass}`}>
                 {site.email}
               </a>
             </li>
-            {site.phone && (
-              <li className="flex items-center gap-3">
-                <Phone aria-hidden="true" className="size-5 text-brand-orange" />
-                <a href={`tel:${site.phone.replace(/\s|-/g, "")}`} className="hover:text-white">
-                  {site.phone}
-                </a>
-              </li>
-            )}
-            <li className="flex items-center gap-3">
-              <MapPin aria-hidden="true" className="size-5 text-brand-orange" />
-              {site.location}
+            <li className="flex items-start gap-3">
+              <MapPin aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-brand-orange" />
+              <address className="not-italic">{site.address}</address>
             </li>
-            <li className="flex items-center gap-3">
-              <Clock aria-hidden="true" className="size-5 text-brand-orange" />
+            <li className="flex items-start gap-3">
+              <Clock aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-brand-orange" />
               Replies within one business day
             </li>
-            <li className="flex items-center gap-3">
-              <MessageSquare aria-hidden="true" className="size-5 text-brand-orange" />
+            <li className="flex items-start gap-3">
+              <MessageSquare aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-brand-orange" />
               Consultations in English & বাংলা
             </li>
           </ul>
+
+          <SocialLinks className="mt-8" />
         </div>
 
         <ContactForm />

@@ -1,15 +1,28 @@
-export function Logo({ className = "" }: { className?: string }) {
+import Image from "next/image";
+
+// Trimmed, web-sized copies of /logo.png and /icon.png live in /public/brand.
+export function Logo({ className = "h-12 w-auto", eager = false }: { className?: string; eager?: boolean }) {
   return (
-    <span className={`inline-flex items-center gap-2 font-extrabold tracking-tight ${className}`}>
-      <span
-        aria-hidden="true"
-        className="grid size-8 place-items-center rounded-lg bg-brand-orange text-sm text-white shadow-lg shadow-brand-orange/30"
-      >
-        TB
-      </span>
-      <span className="text-lg text-white">
-        Tech Bite <span className="text-brand-orange">BD</span>
-      </span>
-    </span>
+    <Image
+      src="/brand/logo.png"
+      alt="Tech Bite"
+      width={287}
+      height={240}
+      loading={eager ? "eager" : "lazy"}
+      className={className}
+    />
+  );
+}
+
+export function LogoMark({ className = "h-10 w-auto", eager = false }: { className?: string; eager?: boolean }) {
+  return (
+    <Image
+      src="/brand/icon.png"
+      alt="Tech Bite"
+      width={140}
+      height={160}
+      loading={eager ? "eager" : "lazy"}
+      className={className}
+    />
   );
 }

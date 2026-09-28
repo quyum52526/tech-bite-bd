@@ -15,7 +15,8 @@ npm run lint
 
 | What | File |
 | --- | --- |
-| Contact email, phone, location | `src/lib/site.ts` → `site` |
+| Contact details & social links | `src/lib/site.ts` → `site`, `socialLinks` |
+| Logo / favicon | `public/brand/*` (trimmed from `public/logo.png`, `public/icon.png`), `src/app/icon.png`, `src/app/apple-icon.png` |
 | Services, tech stack, portfolio items | `src/lib/site.ts` |
 | Brand colours / font | `src/app/globals.css` (`@theme`) and `src/app/layout.tsx` |
 | Page sections | `src/components/*` |
@@ -23,6 +24,5 @@ npm run lint
 
 ## Before launch
 
-- Replace the placeholder contact details in `src/lib/site.ts`.
 - Replace the sample portfolio entries with real client work.
 - Connect lead delivery in `src/app/actions.ts` (email, Google Sheet, CRM). Right now submissions are validated and only logged on the server.

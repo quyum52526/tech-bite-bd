@@ -1,10 +1,28 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { projects } from "@/lib/site";
+import { projects, type Project } from "@/lib/site";
 import { InquiryButton } from "./InquiryButton";
 import { SectionHeading } from "./SectionHeading";
 
 const host = (url: string) => new URL(url).host;
+
+function StatusBadge({ status = "live" }: { status?: Project["status"] }) {
+  const prototype = status === "prototype";
+  const dot = prototype ? "bg-amber-400" : "bg-emerald-400";
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 text-xs font-medium ${prototype ? "text-amber-300" : "text-emerald-300"}`}
+    >
+      <span aria-hidden="true" className="relative flex size-2">
+        <span
+          className={`absolute inline-flex size-full rounded-full opacity-75 motion-safe:animate-ping ${dot}`}
+        />
+        <span className={`relative inline-flex size-2 rounded-full ${dot}`} />
+      </span>
+      {prototype ? "Interactive Prototype" : "Live Demo"}
+    </span>
+  );
+}
 
 export function Portfolio() {
   return (
@@ -50,13 +68,7 @@ export function Portfolio() {
                     <span className="rounded-full border border-brand-orange/30 bg-brand-orange/10 px-3 py-1 text-xs font-semibold text-brand-orange-light">
                       {project.category}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-300">
-                      <span aria-hidden="true" className="relative flex size-2">
-                        <span className="absolute inline-flex size-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
-                        <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
-                      </span>
-                      Live Demo
-                    </span>
+                    <StatusBadge status={project.status} />
                   </div>
 
                   <h3 className="mt-4 text-xl font-bold text-white">{project.title}</h3>

@@ -162,7 +162,7 @@ export const products: Product[] = [
     mockup: "crm",
   },
   {
-    name: "Techbite-HRMS",
+    name: "Techbite HRMS",
     kind: "HR & payroll management",
     description:
       "Attendance tracking, automated payroll, leave workflows, and employee performance dashboard.",
@@ -201,6 +201,8 @@ export type Project = {
   url: string;
   summary: string;
   tags: string[];
+  // "live" (default) shows "Live Demo"; "prototype" shows "Interactive Prototype".
+  status?: "live" | "prototype";
   // Optional screenshot in /public (e.g. "/projects/bitepos.png"), shown inside the browser frame.
   image?: string;
 };
@@ -233,6 +235,7 @@ export const projects: Project[] = [
     url: "https://airestaurant.vercel.app",
     summary: "Interactive digital dining interface with AI food cutouts and dynamic table booking.",
     tags: ["AI Concept", "Motion", "UX"],
+    status: "prototype",
   },
   {
     title: "Rayyan Commerce",

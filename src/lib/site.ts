@@ -198,34 +198,54 @@ export const capabilities = [
 export type Project = {
   title: string;
   category: string;
+  url: string;
   summary: string;
   tags: string[];
-  // Tailwind gradient classes for the preview tile until real screenshots are added.
-  accent: string;
+  // Optional screenshot in /public (e.g. "/projects/bitepos.png"), shown inside the browser frame.
+  image?: string;
 };
 
-// Sample entries — replace with real client work (title, summary, results, screenshot).
 export const projects: Project[] = [
   {
-    title: "E-commerce Storefront",
-    category: "Web Development",
-    summary: "A headless storefront with fast product search, local payment gateways and an admin dashboard.",
-    tags: ["Next.js", "Stripe / SSLCommerz", "SEO"],
-    accent: "from-brand-orange/80 to-amber-400/60",
+    title: "bitePOS",
+    category: "Retail & Restaurant POS",
+    url: "https://bitepos-rho.vercel.app",
+    summary: "Offline-first cloud POS with instant receipt printing, inventory sync, and branch closing.",
+    tags: ["Next.js", "PWA", "Tailwind"],
   },
   {
-    title: "Logistics Operations Portal",
-    category: "Custom Software",
-    summary:
-      "Internal tool that tracks shipments, billing and staff tasks in one place instead of scattered sheets.",
-    tags: ["Dashboard", "PostgreSQL", "Automation"],
-    accent: "from-sky-500/70 to-brand-navy-400/60",
+    title: "Techbite HRMS",
+    category: "Enterprise HR & Payroll",
+    url: "https://techbites-hrms.vercel.app",
+    summary: "Complete workforce management, attendance tracking, and automated payroll deduction.",
+    tags: ["SaaS", "Dashboard", "ERP"],
   },
   {
-    title: "Brand Launch Campaign",
-    category: "Design & Marketing",
-    summary: "Brand identity, motion teasers and a paid social campaign for a new consumer product launch.",
-    tags: ["Branding", "Motion", "Meta Ads"],
-    accent: "from-fuchsia-500/60 to-brand-orange/70",
+    title: "Tech Bites PayPulse",
+    category: "FinTech & Payments",
+    url: "https://tech-bites-paypulse.vercel.app",
+    summary: "Modern multi-channel payment gateway aggregator and guest checkout system.",
+    tags: ["FinTech", "API", "Security"],
+  },
+  {
+    title: "AI Restaurant",
+    category: "Hospitality & AI Ordering",
+    url: "https://airestaurant.vercel.app",
+    summary: "Interactive digital dining interface with AI food cutouts and dynamic table booking.",
+    tags: ["AI Concept", "Motion", "UX"],
+  },
+  {
+    title: "Rayyan Commerce",
+    category: "Lifestyle E-Commerce",
+    url: "https://rayyan-pi.vercel.app",
+    summary: "High-conversion modern storefront with dynamic categories and optimized checkout.",
+    tags: ["E-Commerce", "Next.js"],
+  },
+  {
+    title: "Match Media",
+    category: "Media & Agency Platform",
+    url: "https://match-media.vercel.app",
+    summary: "Media portfolio and client onboarding engine built for creative studios.",
+    tags: ["Agency", "Design System"],
   },
 ];

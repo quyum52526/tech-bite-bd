@@ -17,7 +17,7 @@ npm run lint
 | --- | --- |
 | Contact details & social links | `src/lib/site.ts` → `site`, `socialLinks` |
 | Logo / favicon | `public/brand/*` (trimmed from `public/logo.png`, `public/icon.png`), `src/app/icon.png`, `src/app/apple-icon.png` |
-| Services, ready products, tech stack, portfolio items | `src/lib/site.ts` (add `image` to a service to replace its CSS mockup with a real screenshot) |
+| Services, ready products, tech stack, live showcase projects | `src/lib/site.ts` (add `image` to a service to replace its CSS mockup with a real screenshot) |
 | Brand colours / font | `src/app/globals.css` (`@theme`) and `src/app/layout.tsx` |
 | Page sections | `src/components/*` |
 | Lead form: validation / email / action | `src/lib/lead.ts`, `src/lib/email.ts`, `src/app/actions.ts` |
@@ -35,5 +35,4 @@ Without `RESEND_API_KEY`, `npm run dev` logs leads to the terminal; a production
 
 ## Before launch
 
-- Replace the sample portfolio entries with real client work.
 - Set `RESEND_API_KEY` in production and send a test inquiry.

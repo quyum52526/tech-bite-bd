@@ -1,9 +1,16 @@
 import {
-  Clapperboard,
+  AudioLines,
+  Calculator,
   CodeXml,
-  Cpu,
+  FileCog,
+  Handshake,
   Megaphone,
-  Share2,
+  Palette,
+  ScanBarcode,
+  ShoppingCart,
+  Smartphone,
+  TrendingUp,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 
@@ -25,16 +32,27 @@ export const socialLinks = [
 
 export const navLinks = [
   { href: "#services", label: "Services" },
+  { href: "#products", label: "Products" },
   { href: "#stack", label: "Tech Stack" },
   { href: "#work", label: "Work" },
   { href: "#contact", label: "Contact" },
 ];
 
+export type ServiceCategory =
+  | "Development"
+  | "Business Software"
+  | "AI & Automation"
+  | "Marketing & Creative";
+export type ServiceVisual = "browser" | "phone" | "dashboard" | "voice" | "document" | "chart" | "design";
+
 export type Service = {
   icon: LucideIcon;
   title: string;
   description: string;
-  points: string[];
+  category: ServiceCategory;
+  // Mockup drawn in CSS until a real screenshot is added via `image` (path in /public).
+  visual: ServiceVisual;
+  image?: string;
 };
 
 export const services: Service[] = [
@@ -43,35 +61,121 @@ export const services: Service[] = [
     title: "Web & App Development",
     description:
       "Fast, SEO-ready websites and mobile apps built on modern frameworks that scale with your business.",
-    points: ["Next.js & React sites", "iOS & Android apps", "E-commerce stores"],
+    category: "Development",
+    visual: "browser",
   },
   {
-    icon: Cpu,
-    title: "Custom Software Solutions",
-    description:
-      "Tailored business software that replaces spreadsheets and manual work with clean, automated workflows.",
-    points: ["Dashboards & portals", "ERP / inventory tools", "API integrations"],
+    icon: Smartphone,
+    title: "Progressive Web App (PWA)",
+    description: "Convert your website into a mobile app for better accessibility and engagement.",
+    category: "Development",
+    visual: "phone",
   },
   {
-    icon: Megaphone,
+    icon: ShoppingCart,
+    title: "E-commerce Website & App",
+    description: "Full-featured e-commerce solutions with multi-vendor and multi-payment gateway support.",
+    category: "Development",
+    visual: "browser",
+  },
+  {
+    icon: ScanBarcode,
+    title: "POS (Point of Sale) System",
+    description: "Smart billing solution for both physical and online stores.",
+    category: "Business Software",
+    visual: "dashboard",
+  },
+  {
+    icon: Calculator,
+    title: "Accounting & Inventory Software",
+    description: "Manage stock, sales, accounts, and profit analytics in one platform.",
+    category: "Business Software",
+    visual: "chart",
+  },
+  {
+    icon: Users,
+    title: "HRM & Payroll Software",
+    description: "Complete employee management with attendance, salary, and leave automation.",
+    category: "Business Software",
+    visual: "dashboard",
+  },
+  {
+    icon: Handshake,
+    title: "CRM System",
+    description: "Customer relationship management with automated follow-up and communication workflows.",
+    category: "Business Software",
+    visual: "chart",
+  },
+  {
+    icon: AudioLines,
+    title: "AI Voice Agent",
+    description: "Voice-based customer support system for call center automation.",
+    category: "AI & Automation",
+    visual: "voice",
+  },
+  {
+    icon: FileCog,
+    title: "Document & Email Automation",
+    description: "Auto-generate PDFs, invoices, and email triggers with AI-driven workflows.",
+    category: "AI & Automation",
+    visual: "document",
+  },
+  {
+    icon: TrendingUp,
     title: "Digital Marketing & SEO",
     description:
       "Data-driven campaigns and technical SEO that put your brand in front of buyers who are ready to act.",
-    points: ["Technical & local SEO", "Google & Meta ads", "Analytics & reporting"],
+    category: "Marketing & Creative",
+    visual: "chart",
   },
   {
-    icon: Clapperboard,
+    icon: Megaphone,
+    title: "Social Media Marketing",
+    description: "Manage and optimize Facebook, Instagram, and LinkedIn ad campaigns.",
+    category: "Marketing & Creative",
+    visual: "phone",
+  },
+  {
+    icon: Palette,
     title: "Creative Design",
     description:
       "Graphics, motion design and video editing that make your brand look as good as it performs.",
-    points: ["Brand identity & graphics", "Motion graphics", "Video editing & AI video"],
+    category: "Marketing & Creative",
+    visual: "design",
+  },
+];
+
+export type Product = {
+  name: string;
+  kind: string;
+  description: string;
+  features: string[];
+  mockup: "crm" | "hrms" | "pos";
+};
+
+export const products: Product[] = [
+  {
+    name: "Techbite-CRM",
+    kind: "Customer relationship management",
+    description: "Streamlined lead tracking, pipeline automation, and multi-channel customer communication.",
+    features: ["Lead tracking", "Pipeline automation", "Multi-channel communication"],
+    mockup: "crm",
   },
   {
-    icon: Share2,
-    title: "Social Media Management",
+    name: "Techbite-HRMS",
+    kind: "HR & payroll management",
     description:
-      "Consistent, on-brand content and community management across the platforms your customers use.",
-    points: ["Content calendars", "Reels & short-form video", "Community management"],
+      "Attendance tracking, automated payroll, leave workflows, and employee performance dashboard.",
+    features: ["Attendance tracking", "Automated payroll", "Leave workflows", "Performance dashboard"],
+    mockup: "hrms",
+  },
+  {
+    name: "bitePOS",
+    kind: "Retail & restaurant POS",
+    description:
+      "Ultra-fast, cloud & offline hybrid retail/restaurant POS with inventory sync and receipt printing.",
+    features: ["Cloud + offline hybrid", "Inventory sync", "Receipt printing"],
+    mockup: "pos",
   },
 ];
 
@@ -105,8 +209,7 @@ export const projects: Project[] = [
   {
     title: "E-commerce Storefront",
     category: "Web Development",
-    summary:
-      "A headless storefront with fast product search, local payment gateways and an admin dashboard.",
+    summary: "A headless storefront with fast product search, local payment gateways and an admin dashboard.",
     tags: ["Next.js", "Stripe / SSLCommerz", "SEO"],
     accent: "from-brand-orange/80 to-amber-400/60",
   },
@@ -121,8 +224,7 @@ export const projects: Project[] = [
   {
     title: "Brand Launch Campaign",
     category: "Design & Marketing",
-    summary:
-      "Brand identity, motion teasers and a paid social campaign for a new consumer product launch.",
+    summary: "Brand identity, motion teasers and a paid social campaign for a new consumer product launch.",
     tags: ["Branding", "Motion", "Meta Ads"],
     accent: "from-fuchsia-500/60 to-brand-orange/70",
   },

@@ -1,6 +1,9 @@
-import { Check } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { services } from "@/lib/site";
+import { InquiryButton } from "./InquiryButton";
 import { SectionHeading } from "./SectionHeading";
+import { ServiceVisual } from "./ServiceVisual";
 
 export function Services() {
   return (
@@ -9,47 +12,52 @@ export function Services() {
         <SectionHeading
           id="services-heading"
           eyebrow="What we do"
-          title="Everything your brand needs to win online"
-          description="One partner for technology, marketing and creative — so your product, message and visuals all pull in the same direction."
+          title="Everything your business needs to win online"
+          description="Websites, business software, AI automation and marketing — one partner, so your product, operations and brand all pull in the same direction."
         />
 
-        <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map(({ icon: Icon, title, description, points }) => (
+        <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {services.map(({ icon, title, description, category, visual, image }) => (
             <li
               key={title}
-              className="group relative flex flex-col rounded-2xl border border-white/10 bg-brand-navy-900/60 p-8 transition duration-300 hover:-translate-y-1 hover:border-brand-orange/50 hover:bg-brand-navy-800/60"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-brand-navy-900/60 transition duration-300 hover:-translate-y-1 hover:border-brand-orange/50"
             >
-              <span className="grid size-12 place-items-center rounded-xl bg-brand-orange/15 text-brand-orange transition group-hover:bg-brand-orange group-hover:text-white">
-                <Icon aria-hidden="true" className="size-6" />
-              </span>
-              <h3 className="mt-6 text-xl font-semibold text-white">{title}</h3>
-              <p className="mt-3 text-slate-300">{description}</p>
-              <ul className="mt-6 space-y-2 text-sm text-slate-300">
-                {points.map((point) => (
-                  <li key={point} className="flex items-center gap-2">
-                    <Check aria-hidden="true" className="size-4 shrink-0 text-brand-orange" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
+              {image ? (
+                <div className="relative aspect-[16/9]">
+                  <Image
+                    src={image}
+                    alt=""
+                    fill
+                    sizes="(min-width:1280px) 25vw, (min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              ) : (
+                <ServiceVisual visual={visual} category={category} icon={icon} />
+              )}
+              <div className="flex flex-1 flex-col p-6">
+                <p className="text-xs font-semibold tracking-wider text-brand-orange uppercase">{category}</p>
+                <h3 className="mt-2 text-lg font-bold text-white">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">{description}</p>
+              </div>
             </li>
           ))}
-
-          <li className="flex flex-col justify-between rounded-2xl bg-gradient-to-br from-brand-orange to-brand-orange-dark p-8">
-            <div>
-              <h3 className="text-xl font-semibold text-white">Not sure where to start?</h3>
-              <p className="mt-3 text-white/90">
-                Tell us your goal. We&apos;ll recommend the right mix of services — no obligation.
-              </p>
-            </div>
-            <a
-              href="#contact"
-              className="mt-8 inline-flex w-fit items-center rounded-full bg-white px-6 py-3 font-semibold text-brand-navy-900 transition hover:bg-brand-navy-950 hover:text-white"
-            >
-              Talk to an expert
-            </a>
-          </li>
         </ul>
+
+        <div className="mt-10 flex flex-col items-start justify-between gap-6 rounded-2xl bg-gradient-to-r from-brand-orange to-brand-orange-dark p-8 sm:flex-row sm:items-center">
+          <div>
+            <h3 className="text-xl font-bold text-white">Need something custom?</h3>
+            <p className="mt-1 text-white/90">
+              We also build bespoke software around your workflow. Tell us your goal — no obligation.
+            </p>
+          </div>
+          <InquiryButton
+            service="Custom software / something else"
+            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-brand-navy-900 transition hover:bg-brand-navy-950 hover:text-white"
+          >
+            Talk to an expert <ArrowRight aria-hidden="true" className="size-4" />
+          </InquiryButton>
+        </div>
       </div>
     </section>
   );

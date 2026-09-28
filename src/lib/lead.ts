@@ -1,4 +1,4 @@
-import { services } from "@/lib/site";
+import { products, services } from "@/lib/site";
 
 // Shared by the client (instant feedback) and the server action (source of truth).
 
@@ -7,16 +7,19 @@ export type LeadField = (typeof LEAD_FIELDS)[number];
 export type LeadValues = Record<LeadField, string>;
 export type LeadErrors = Partial<Record<LeadField, string>>;
 
-export const SERVICE_OPTIONS = [...services.map((s) => s.title), "Not sure yet"];
+export const SERVICE_CHOICES = services.map((s) => s.title);
+export const PRODUCT_CHOICES = products.map((p) => `${p.name} (live demo)`);
+export const OTHER_CHOICES = ["Custom software / something else", "Not sure yet"];
+export const SERVICE_OPTIONS = [...SERVICE_CHOICES, ...PRODUCT_CHOICES, ...OTHER_CHOICES];
+
+export const demoChoice = (productName: string) => `${productName} (live demo)`;
 export const BUDGET_OPTIONS = ["Small project", "Medium project", "Large / ongoing"];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^\+?[\d\s\-()]{7,20}$/;
 
 export function readLead(formData: FormData): LeadValues {
-  return Object.fromEntries(
-    LEAD_FIELDS.map((f) => [f, String(formData.get(f) ?? "").trim()]),
-  ) as LeadValues;
+  return Object.fromEntries(LEAD_FIELDS.map((f) => [f, String(formData.get(f) ?? "").trim()])) as LeadValues;
 }
 
 export function validateLead(v: LeadValues): LeadErrors {

@@ -9,7 +9,7 @@ export function TechStack() {
     <section
       id="stack"
       aria-labelledby="stack-heading"
-      className="relative border-y border-white/10 bg-brand-navy-900/50 py-20 sm:py-28"
+      className="relative py-20 sm:py-28"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading

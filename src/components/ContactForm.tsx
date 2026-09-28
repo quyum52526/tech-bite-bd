@@ -7,11 +7,14 @@ import {
   BUDGET_OPTIONS,
   LEAD_FIELDS,
   readLead,
-  SERVICE_OPTIONS,
+  OTHER_CHOICES,
+  PRODUCT_CHOICES,
+  SERVICE_CHOICES,
   validateLead,
   type LeadErrors,
   type LeadField,
 } from "@/lib/lead";
+import { INQUIRY_EVENT, type InquiryDetail } from "@/lib/inquiry";
 import { Toast, type ToastData } from "./Toast";
 
 const initialState: LeadState = { status: "idle" };
@@ -57,6 +60,40 @@ export function ContactForm() {
   useEffect(() => {
     if (state.status === "error" && state.errors) focusFirstError(state.errors);
   }, [state]);
+
+  // "Request a Live Demo" / "Talk to an expert" buttons elsewhere on the page pre-fill the form.
+  const [prefill, setPrefill] = useState<InquiryDetail & { nonce: number }>();
+  useEffect(() => {
+    const onInquiry = (e: Event) => {
+      const detail = (e as CustomEvent<InquiryDetail>).detail;
+      if (state.status === "success") setDismissedId(state.id);
+      setErrors((prev) => ({ ...prev, service: undefined }));
+      setPrefill({ ...detail, nonce: Date.now() });
+    };
+    window.addEventListener(INQUIRY_EVENT, onInquiry);
+    return () => window.removeEventListener(INQUIRY_EVENT, onInquiry);
+  }, [state.status, state.id]);
+
+  const autoMessage = useRef("");
+  useEffect(() => {
+    const form = formRef.current;
+    if (!prefill || !form) return;
+    const select = form.elements.namedItem("service") as HTMLSelectElement | null;
+    if (select) select.value = prefill.service;
+    // Fill the message only if it is empty or still holds text we filled in earlier.
+    const message = form.elements.namedItem("message") as HTMLTextAreaElement | null;
+    const current = message?.value.trim() ?? "";
+    if (message && (!current || current === autoMessage.current)) {
+      message.value = prefill.message ?? "";
+      autoMessage.current = prefill.message ?? "";
+    }
+    // Move keyboard focus to the first empty field once the #contact jump has happened.
+    const firstEmpty = ["name", "email"]
+      .map((f) => form.elements.namedItem(f) as HTMLInputElement | null)
+      .find((el) => el && !el.value);
+    const t = setTimeout(() => firstEmpty?.focus({ preventScroll: true }), 50);
+    return () => clearTimeout(t);
+  }, [prefill]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     const errs = validateLead(readLead(new FormData(e.currentTarget)));
@@ -170,7 +207,7 @@ export function ContactForm() {
           </div>
           <div>
             <label htmlFor="service" className="text-sm font-medium text-slate-200">
-              Service needed <span className="text-brand-orange">*</span>
+              Service or product <span className="text-brand-orange">*</span>
             </label>
             <select
               id="service"
@@ -182,12 +219,22 @@ export function ContactForm() {
               className={inputClass}
             >
               <option value="" disabled>
-                Select a service
+                Select a service or product
               </option>
-              {SERVICE_OPTIONS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
+              {(
+                [
+                  ["Services", SERVICE_CHOICES],
+                  ["Ready products", PRODUCT_CHOICES],
+                  ["Other", OTHER_CHOICES],
+                ] as const
+              ).map(([group, options]) => (
+                <optgroup key={group} label={group}>
+                  {options.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
             <FieldError id="service-error" error={errors.service} />

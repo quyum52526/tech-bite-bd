@@ -1,4 +1,5 @@
 import { ArrowRight, CircleCheck, Sparkles } from "lucide-react";
+import { site } from "@/lib/site";
 
 const highlights = ["Web & App Development", "Custom Software", "SEO & Marketing", "Design & Video"];
 
@@ -12,7 +13,7 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
         <p className="inline-flex items-center gap-2 rounded-full border border-brand-orange/30 bg-brand-orange/10 px-4 py-1.5 text-sm font-medium text-brand-orange-light">
           <Sparkles aria-hidden="true" className="size-4" />
-          IT & Digital Creative Agency
+          {site.tagline}
         </p>
 
         <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">

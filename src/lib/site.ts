@@ -9,7 +9,7 @@ import {
 
 export const site = {
   name: "Tech Bite BD",
-  tagline: "IT & Digital Creative Agency",
+  tagline: "IT & Creative Agency",
   email: "quyum52526@gmail.com",
   phone: "+880 1962-434901",
   phoneHref: "tel:+8801962434901",

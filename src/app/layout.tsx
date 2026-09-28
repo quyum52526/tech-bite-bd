@@ -9,13 +9,13 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Tech Bite BD — IT & Digital Creative Agency",
+  title: "Tech Bite BD — IT & Creative Agency",
   description:
-    "Tech Bite BD builds websites, apps and custom software, and grows brands with SEO, digital marketing, creative design and social media management.",
+    "Tech Bite BD — IT & Creative Agency. We build websites, apps and custom software, and grow brands with SEO, digital marketing, creative design and social media management.",
   openGraph: {
-    title: "Tech Bite BD — IT & Digital Creative Agency",
+    title: "Tech Bite BD — IT & Creative Agency",
     description:
-      "Web & app development, custom software, SEO, creative design and social media — under one roof.",
+      "Tech Bite BD — IT & Creative Agency. Web & app development, custom software, SEO, creative design and social media under one roof.",
     type: "website",
   },
 };

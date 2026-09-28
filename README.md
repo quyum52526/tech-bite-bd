@@ -1,6 +1,6 @@
 # Tech Bite BD
 
-Landing page for Tech Bite BD, an IT & Digital Creative Agency. Built with Next.js (App Router), Tailwind CSS v4 and Lucide React.
+Landing page for Tech Bite BD, an IT & Creative Agency. Built with Next.js (App Router), Tailwind CSS v4 and Lucide React.
 
 ## Getting started
 
